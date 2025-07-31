@@ -14,6 +14,14 @@ fi
 echo "检查并安装依赖..."
 pip install -r requirements.txt
 
+# 测试Redis连接
+echo "测试Redis连接..."
+python test_redis.py
+if [ $? -ne 0 ]; then
+    echo "Redis连接测试失败，请检查Redis配置后重试"
+    exit 1
+fi
+
 # 运行数据库迁移
 echo "执行数据库迁移..."
 python manage.py makemigrations

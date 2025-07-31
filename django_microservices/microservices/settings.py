@@ -80,14 +80,14 @@ DATABASES = {
 # Redis configuration
 REDIS_HOST = config('REDIS_HOST', default='localhost')
 REDIS_PORT = config('REDIS_PORT', default=6379, cast=int)
-REDIS_PASSWORD = config('REDIS_PASSWORD', default='root')
+REDIS_PASSWORD = config('REDIS_PASSWORD', default='', cast=str)
 REDIS_DB = config('REDIS_DB', default=0, cast=int)
 
 # Cache configuration
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}',
+        'LOCATION': f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}' if not REDIS_PASSWORD else f'redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/{REDIS_DB}',
     }
 }
 

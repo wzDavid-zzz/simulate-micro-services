@@ -14,6 +14,7 @@ django_microservices/
 ├── .env.example           # 环境变量示例
 ├── start_all.sh           # 启动所有服务脚本
 ├── stop_all.sh            # 停止所有服务脚本
+├── REDIS_CONFIG.md        # Redis配置说明
 └── logs/                  # 日志目录
 ```
 
@@ -48,7 +49,7 @@ django_microservices/
 
 - Python 3.8+
 - MySQL 5.7+
-- Redis 6.0+
+- Redis 6.0+ (无需密码验证)
 
 ### 1. 安装依赖
 
@@ -66,11 +67,20 @@ pip install -r requirements.txt
 # 复制环境变量文件
 cp .env.example .env
 
-# 编辑环境变量（根据你的环境修改数据库和Redis配置）
+# 编辑环境变量（根据你的环境修改数据库配置）
+# 注意：Redis密码默认为空，如果你的Redis有密码请设置REDIS_PASSWORD
+# 详细的Redis配置说明请查看 REDIS_CONFIG.md
 vim .env
 ```
 
-### 3. 初始化数据库
+### 3. 测试Redis连接（推荐）
+
+```bash
+# 测试Redis连接是否正常
+python test_redis.py
+```
+
+### 4. 初始化数据库
 
 ```bash
 # 执行数据库迁移
@@ -81,7 +91,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-### 4. 启动服务
+### 5. 启动服务
 
 #### 方式一：一键启动所有服务
 ```bash
@@ -102,7 +112,7 @@ python start_client_service.py 1  # 实例1
 python start_client_service.py 2  # 实例2
 ```
 
-### 5. 停止服务
+### 6. 停止服务
 
 ```bash
 ./stop_all.sh
@@ -210,6 +220,11 @@ curl http://127.0.0.1:8005/api/getInfo
    - 检查注册中心状态
    - 验证服务实例配置
    - 查看网络连接
+
+4. **Redis连接失败**
+   - 确保Redis服务正在运行
+   - 检查Redis端口配置
+   - 如果Redis有密码，请设置REDIS_PASSWORD环境变量
 
 ### 日志文件
 - `logs/registry.log` - 注册中心日志
