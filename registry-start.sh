@@ -1,0 +1,1 @@
+nohup java -jar registry-service-1.0-SNAPSHOT.jar > registry.log 2>&1

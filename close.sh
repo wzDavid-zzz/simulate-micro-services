@@ -1,0 +1,5 @@
+kill -9 $(netstat -tulnvp | grep 30105 | awk '{print $7}' | cut -d'/' -f1)
+kill -9 $(netstat -tulnvp | grep 30206 | awk '{print $7}' | cut -d'/' -f1)
+kill -9 $(netstat -tulnvp | grep 30355 | awk '{print $7}' | cut -d'/' -f1)
+kill -9 $(netstat -tulnvp | grep 30456 | awk '{print $7}' | cut -d'/' -f1)
+kill -9 $(netstat -tulnvp | grep 30006 | awk '{print $7}' | cut -d'/' -f1)

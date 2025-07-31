@@ -1,0 +1,11 @@
+server:
+  port: 30105
+
+registry-service:
+  remote-port: 30006
+  remote-url: http://127.0.0.1:${registry-service.remote-port}
+
+time-service-instance:
+  service-name: time-service
+  ip-address: 127.0.0.1
+  port: ${server.port}

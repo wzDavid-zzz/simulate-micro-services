@@ -1,0 +1,12 @@
+server:
+  port: 30456
+
+registry-service:
+  remote-port: 30006
+  remote-url: http://127.0.0.1:${registry-service.remote-port}
+
+
+client-service-instance:
+  service-name: client-service
+  ip-address: 127.0.0.1
+  port: ${server.port}

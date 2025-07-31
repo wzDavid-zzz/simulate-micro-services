@@ -1,0 +1,42 @@
+#server:
+#  port: 30006
+#
+#spring:
+#  datasource:
+#    username: root
+#    password: '@FJX2008281234'
+#    url: jdbc:mysql://118.89.80.110:3306/FJX_microservice?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      connection-test-query: select 1
+#      connection-timeout: 20000
+#      idle-timeout: 300000
+#      maximum-pool-size: 5
+#      minimum-idle: 5
+#  redis:r
+#    host: 118.89.80.110
+#    port: 6379
+#    password: '@FJX2008281234'
+#    database: 0
+
+server:
+  port: 30006
+
+spring:
+  datasource:
+    username: root
+    password: 'NewPassword123!'
+    url: jdbc:mysql://localhost:3306/FJX_microservice?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-test-query: select 1
+      connection-timeout: 300000
+      idle-timeout: 300000
+      maximum-pool-size: 5
+      minimum-idle: 5
+  redis:
+    host: localhost
+    port: 6379
+    password: 'root'
+    database: 0
+
