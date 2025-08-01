@@ -1,0 +1,1 @@
+# Django microservices project
