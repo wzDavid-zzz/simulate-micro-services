@@ -12,6 +12,9 @@ if __name__ == '__main__':
     # 设置环境变量
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'microservices.settings')
     
+    # 设置服务类型为时间服务
+    os.environ['MICROSERVICE_TYPE'] = 'time_service'
+    
     # 获取端口参数
     instance = sys.argv[1] if len(sys.argv) > 1 else '1'
     
@@ -24,6 +27,7 @@ if __name__ == '__main__':
         sys.exit(1)
     
     print(f"正在启动时间服务实例 {instance}，端口: {port}")
+    print("时间服务将自动注册到注册中心")
     
     # 启动Django开发服务器
     sys.argv = ['manage.py', 'runserver', f'127.0.0.1:{port}']

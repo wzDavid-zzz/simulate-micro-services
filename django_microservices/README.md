@@ -14,7 +14,9 @@ django_microservices/
 ├── .env.example           # 环境变量示例
 ├── start_all.sh           # 启动所有服务脚本
 ├── stop_all.sh            # 停止所有服务脚本
+├── test_single_service.py # 单独启动服务测试脚本
 ├── REDIS_CONFIG.md        # Redis配置说明
+├── SERVICE_ISOLATION.md   # 服务隔离配置说明
 └── logs/                  # 日志目录
 ```
 
@@ -100,19 +102,28 @@ python manage.py createsuperuser
 
 #### 方式二：单独启动服务
 ```bash
-# 启动注册中心
+# 启动注册中心（仅注册中心，不会自动注册其他服务）
 python start_registry.py
 
-# 启动时间服务实例
+# 启动时间服务实例（会自动注册到注册中心）
 python start_time_service.py 1    # 实例1
 python start_time_service.py 2    # 实例2
 
-# 启动客户端服务实例
+# 启动客户端服务实例（会自动注册到注册中心）
 python start_client_service.py 1  # 实例1
 python start_client_service.py 2  # 实例2
 ```
 
-### 6. 停止服务
+> **注意**: 现在支持真正的服务隔离启动。单独启动注册中心时，不会有其他服务自动注册。详细说明请查看 `SERVICE_ISOLATION.md`。
+
+### 6. 测试服务隔离（可选）
+
+```bash
+# 测试单独启动是否正常工作
+python test_single_service.py
+```
+
+### 7. 停止服务
 
 ```bash
 ./stop_all.sh
